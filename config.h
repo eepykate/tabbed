@@ -1,20 +1,20 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]        = "Fira Mono:pixelsize=12:style=bold";
-static const char* normbgcolor  = "#1F1F1F";
-static const char* normfgcolor  = "#a9a9a9";
-static const char* selbgcolor   = "#0D0D0D";
-static const char* selfgcolor   = "#d9d9d9";
-static const char* urgbgcolor   = "#111111";
-static const char* urgfgcolor   = "#cc0000";
-static const char before[]      = "<";
-static const char after[]       = ">";
-static const char titletrim[]   = "...";
-static const int  tabwidth      = 120;
+static       char font[]        = "Fira Mono:pixelsize=12:style=bold";
+static       char* normbgcolor  = "#1F1F1F";
+static       char* normfgcolor  = "#a9a9a9";
+static       char* selbgcolor   = "#0D0D0D";
+static       char* selfgcolor   = "#d9d9d9";
+static       char* urgbgcolor   = "#111111";
+static       char* urgfgcolor   = "#cc0000";
+static       char before[]      = "<";
+static       char after[]       = ">";
+static       char titletrim[]   = "...";
+static       int  tabwidth      = 120;
 static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
-static const int  barheight     = 30;
+static       int  barheight     = 30;
 
 /*
  * Xresources preferences to load at startup
