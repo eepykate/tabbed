@@ -1,19 +1,36 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]        = "monospace:size=9";
-static const char* normbgcolor  = "#222222";
-static const char* normfgcolor  = "#cccccc";
-static const char* selbgcolor   = "#555555";
-static const char* selfgcolor   = "#ffffff";
-static const char* urgbgcolor   = "#111111";
-static const char* urgfgcolor   = "#cc0000";
-static const char before[]      = "<";
-static const char after[]       = ">";
-static const char titletrim[]   = "...";
-static const int  tabwidth      = 200;
+static       char font[]        = "monospace:size=9";
+static       char* normbgcolor  = "#222222";
+static       char* normfgcolor  = "#cccccc";
+static       char* selbgcolor   = "#555555";
+static       char* selfgcolor   = "#ffffff";
+static       char* urgbgcolor   = "#111111";
+static       char* urgfgcolor   = "#cc0000";
+static       char before[]      = "<";
+static       char after[]       = ">";
+static       char titletrim[]   = "...";
+static       int  tabwidth      = 200;
 static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+        { "font",         STRING,   &font },
+        { "normbgcolor",  STRING,   &normbgcolor },
+        { "normfgcolor",  STRING,   &normfgcolor },
+        { "selfgcolor",   STRING,   &selfgcolor },
+        { "selbgcolor",   STRING,   &selbgcolor },
+        { "urgbgcolor",   STRING,   &urgbgcolor },
+        { "urgfgcolor",   STRING,   &urgfgcolor },
+        { "before",       STRING,   &before },
+        { "after",        STRING,   &after },
+        { "titletrim",    STRING,   &titletrim },
+        { "tabwidth",     INTEGER,  &tabwidth },
+};
 
 /*
  * Where to place a new tab when it is opened. When npisrelative is True,

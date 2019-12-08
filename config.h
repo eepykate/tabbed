@@ -17,6 +17,23 @@ static       Bool urgentswitch  = False;
 static const int  barheight     = 30;
 
 /*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+	{ "font",         STRING,   &font },
+	{ "normbgcolor",  STRING,   &normbgcolor },
+	{ "normfgcolor",  STRING,   &normfgcolor },
+	{ "selfgcolor",   STRING,   &selfgcolor },
+	{ "selbgcolor",   STRING,   &selbgcolor },
+	{ "urgbgcolor",   STRING,   &urgbgcolor },
+	{ "urgfgcolor",   STRING,   &urgfgcolor },
+	{ "before",       STRING,   &before },
+	{ "after",        STRING,   &after },
+	{ "titletrim",    STRING,   &titletrim },
+	{ "tabwidth",     INTEGER,  &tabwidth },
+};
+
+/*
  * Where to place a new tab when it is opened. When npisrelative is True,
  * then the current position is changed + newposition. If npisrelative
  * is False, then newposition is an absolute position.
