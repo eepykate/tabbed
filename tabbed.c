@@ -1065,7 +1065,7 @@ setup(void)
 	xerrorxlib = XSetErrorHandler(xerror);
 
 	class_hint.res_name = wmname;
-	class_hint.res_class = "Tabbed";
+	class_hint.res_class = "tabbed";
 	XSetClassHint(dpy, win, &class_hint);
 
 	size_hint = XAllocSizeHints();
