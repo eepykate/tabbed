@@ -1065,7 +1065,7 @@ setup(void)
 	xerrorxlib = XSetErrorHandler(xerror);
 
 	class_hint.res_name = wmname;
-	class_hint.res_class = "tabbed";
+	class_hint.res_class = "Tabbed";
 	XSetClassHint(dpy, win, &class_hint);
 
 	size_hint = XAllocSizeHints();
@@ -1289,10 +1289,10 @@ xresload(XrmDatabase db, char *name, enum restype rtype, void *dst)
 	char *type;
 	XrmValue ret;
 
-	snprintf(fullname, sizeof(fullname), "%s.%s",
-	         wmname ? wmname : "tabbed", name);
 	snprintf(fullclass, sizeof(fullclass), "%s.%s",
-	         "Tabbed", name);
+	         "tabbed", name);
+  snprintf(fullname, sizeof(fullname), "%s.%s",
+           wmname ? wmname : "tabbed", name);
 	fullname[sizeof(fullname) - 1] = fullclass[sizeof(fullclass) - 1] = '\0';
 
 	XrmGetResource(db, fullname, fullclass, &type, &ret);
