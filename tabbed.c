@@ -145,6 +145,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static void xsettitle(Window w, const char *str);
 static int xresload(XrmDatabase db, char *name, enum restype rtype, void *dst);
 static void confinit(void);
+static void xloadcols(void);
 
 /* variables */
 static int screen;
@@ -252,6 +253,11 @@ clientmessage(const XEvent *e)
 			return;
 		}
 		running = False;
+	} else if (strcmp(XGetAtomName(dpy, e->xclient.message_type), "ReloadColors") == 0) {
+		confinit();
+		xloadcols();
+		drawbar();
+		XSetWindowBackground(dpy, win, dc.norm[ColBG].pixel);
 	}
 }
 
@@ -1044,12 +1050,7 @@ setup(void)
 			wy = dh + wy - wh - 1;
 	}
 
-	dc.norm[ColBG] = getcolor(normbgcolor);
-	dc.norm[ColFG] = getcolor(normfgcolor);
-	dc.sel[ColBG] = getcolor(selbgcolor);
-	dc.sel[ColFG] = getcolor(selfgcolor);
-	dc.urg[ColBG] = getcolor(urgbgcolor);
-	dc.urg[ColFG] = getcolor(urgfgcolor);
+	xloadcols();
 	dc.drawable = XCreatePixmap(dpy, root, ww, wh,
 	                            DefaultDepth(dpy, screen));
 	dc.gc = XCreateGC(dpy, root, 0, 0);
@@ -1104,7 +1105,7 @@ void
 spawn(const Arg *arg)
 {
 	if (fork() == 0) {
-		if(dpy)
+		if (dpy)
 			close(ConnectionNumber(dpy));
 
 		setsid();
@@ -1317,13 +1318,24 @@ confinit(void)
 	ResourcePref *p;
 
 	XrmInitialize();
-	resm = XResourceManagerString(dpy);
+	resm = XResourceManagerString(XOpenDisplay(NULL)); /* RESOURCE_MANAGER property isn't updated */
 	if (!resm)
 		return;
 
 	db = XrmGetStringDatabase(resm);
 	for (p = resources; p < resources + LENGTH(resources); p++)
 		xresload(db, p->name, p->type, p->dst);
+}
+
+void
+xloadcols(void)
+{
+	dc.norm[ColBG] = getcolor(normbgcolor);
+	dc.norm[ColFG] = getcolor(normfgcolor);
+	dc.sel[ColBG] = getcolor(selbgcolor);
+	dc.sel[ColFG] = getcolor(selfgcolor);
+	dc.urg[ColBG] = getcolor(urgbgcolor);
+	dc.urg[ColFG] = getcolor(urgfgcolor);
 }
 
 void
