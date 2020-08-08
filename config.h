@@ -14,7 +14,7 @@ static       char titletrim[]   = "...";
 static       int  tabwidth      = 120;
 static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
-static       int  barheight     = 30;
+static       int  barheight     = 40;
 
 /*
  * Xresources preferences to load at startup
