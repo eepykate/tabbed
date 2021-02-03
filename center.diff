@@ -1,5 +1,6 @@
 diff --git a/tabbed.c b/tabbed.c
 index eafe28a..5b7d633 100644
+by github.com/vizs
 --- a/tabbed.c
 +++ b/tabbed.c
 @@ -378,7 +378,7 @@ drawbar(void)
